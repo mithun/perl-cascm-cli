@@ -14,14 +14,11 @@ use File::HomeDir;
 use CASCM::Wrapper;
 use Log::Any::Adapter;
 use Hash::Merge qw(merge);
+use Getopt::Mini ( later => 1 );
 use Log::Any::Adapter::Callback;
 use Getopt::Long qw(GetOptionsFromArray);
 use Object::Tiny qw(cascm exitval context);
-
-use Getopt::Mini (
-    hungry_flags => 1,
-    later        => 1,
-);
+use Config::Tiny;
 
 use Data::Printer;
 
@@ -48,6 +45,7 @@ sub run {
 
     # Initialize
     $self->_init();
+    local @ARGV = ();
 
     # Parse main arguments
     my $main_options = {};
@@ -61,40 +59,46 @@ sub run {
     }
 
     # Get Subcommand options
-    @ARGV = @args;
-    my %sub_options = getopt();
+    my %sub_options = getopt(
+        hungry_flags => 1,
+        argv         => [@args],
+    );
     delete $sub_options{_argv} if exists $sub_options{_argv};
-
-    @ARGV = ();
-    @args = ();
 
     # Get Subcommand arguments
     my @sub_args;
-    if ( $sub_options{''} and @{ $sub_options{''} } ) {
-        push( @sub_args, @{ $sub_options{''} } );
+    if ( exists $sub_options{''} ) {
+        if ( ref( $sub_options{''} ) eq 'ARRAY' ) {
+            push( @sub_args, @{ $sub_options{''} } );
+        }
+        else {
+            push( @sub_args, $sub_options{''} );
+        }
         delete $sub_options{''};
-    } ## end if ( $sub_options{''} ...)
+    } ## end if ( exists $sub_options...)
+    p @sub_args;
+
+    # Make lowercase
+    $subcmd = '' if not defined $subcmd;
+    $subcmd = lc($subcmd);
+
+    # Check for help
+    if ( ( $subcmd eq 'help' ) or ( $main_options->{help} ) ) {
+        $self->_print_help();
+        exit 0;
+    } ## end if ( ( $subcmd eq 'help'...))
+
+    # Check for version
+    if ( ( $subcmd eq 'version' ) or ( $main_options->{version} ) ) {
+        $self->_print_version();
+        exit 0;
+    } ## end if ( ( $subcmd eq 'version'...))
 
     # Check for Subcommand
     if ( not $subcmd ) {
         $self->_print_help();
         exit 1;
     } ## end if ( not $subcmd )
-
-    # Make lowercase
-    $subcmd = lc($subcmd);
-
-    # Check for help
-    if ( $subcmd eq 'help' ) {
-        $self->_print_help();
-        exit 0;
-    } ## end if ( $subcmd eq 'help')
-
-    # Check for version
-    if ( $subcmd eq 'version' ) {
-        $self->_print_version();
-        exit 0;
-    } ## end if ( $subcmd eq 'version')
 
     # Initialize Logger
     $self->_init_logger();
@@ -105,8 +109,15 @@ sub run {
     # Initialize CASCM
     $self->_init_cascm();
 
+    # Check if subcommand is supported
+    if ( not $self->cascm()->can($subcmd) ) {
+        $self->_print_bad_subcmd($subcmd);
+    }
+
     # Run subcommand
-    $self->cascm()->$subcmd( {%sub_options}, @sub_args );
+    # $self->cascm()->$subcmd( {%sub_options}, @sub_args );
+    my $dry_run = $self->cascm()->$subcmd( {%sub_options}, @sub_args );
+    p $dry_run;
     $self->{exitval} = $self->cascm()->exitval();
 
   return 1;
@@ -123,6 +134,7 @@ sub _init {
     # Setup getopt long
     Getopt::Long::Configure('default');
     Getopt::Long::Configure('pass_through');
+    Getopt::Long::Configure('no_auto_abbrev');
 
     # Set exit value
     $self->{exitval} = 0;
@@ -253,7 +265,7 @@ sub _init_context {
     my $current_and_user = merge( $current_context,  $user_context );
     my $context          = merge( $current_and_user, $system_context );
 
-    $self->{_context} = $context;
+    $self->{context} = $context;
   return 1;
 } ## end sub _init_context
 
@@ -282,6 +294,7 @@ sub _init_cascm {
             dry_run    => 1,
         }
     );
+    $cascm->set_context( $self->context() );
     $self->{cascm} = $cascm;
   return 1;
 } ## end sub _init_cascm
