@@ -26,16 +26,6 @@ use Object::Tiny qw(cascm exitval context);
 our $VERSION = '0.1.0';
 
 #######################
-# CONSTRUCTOR
-#######################
-sub new {
-    my ( $class, @args ) = @_;
-    my $self = {};
-    bless( $self, $class );
-  return $self;
-} ## end sub new
-
-#######################
 # RUNNER
 #######################
 sub run {
