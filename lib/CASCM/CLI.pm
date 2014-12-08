@@ -20,8 +20,6 @@ use Log::Any::Adapter::Callback;
 use Getopt::Long qw(GetOptionsFromArray);
 use Object::Tiny qw(cascm exitval context);
 
-# use Data::Printer;
-
 #######################
 # VERSION
 #######################
@@ -208,7 +206,13 @@ sub _init_logger {
         logging_cb => sub {
             my ( $method, $self, $format, @params ) = @_;
             chomp( $format, @params );
-            printf( "%s: $format\n", uc($method), @params );
+            $method = uc($method);
+            if ( ( $method eq 'WARNING' ) or ( $method eq 'ERROR' ) ) {
+                print STDERR "[$method] $format\n";
+            }
+            else {
+                print "[$method] $format\n";
+            }
         },
     );
 
