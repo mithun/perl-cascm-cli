@@ -311,9 +311,8 @@ CASCM::CLI
 
 =head1 BUGS AND LIMITATIONS
 
-Please report any bugs or feature requests to
-C<bug-cascm-cli@rt.cpan.org>, or through the web interface at
-L<http://rt.cpan.org/Public/Dist/Display.html?Name=CASCM-CLI>
+Please report any bugs or feature requests at
+L<https://github.com/mithun/perl-cascm-cli/issues>
 
 =head1 AUTHOR
 

@@ -41,6 +41,20 @@ my $builder = Module::Build->new(
     },
     requires => {
 
+        # Perl Version
+        'perl' => '5.008001',
+
+        # Dependencies
+        'CASCM::Wrapper'              => '0.16',
+        'Config::Tiny'                => 0,
+        'File::HomeDir'               => 0,
+        'File::Spec'                  => 0,
+        'Getopt::Long'                => 0,
+        'Getopt::Mini'                => 0,
+        'Hash::Merge'                 => 0,
+        'Log::Any::Adapter'           => 0,
+        'Log::Any::Adapter::Callback' => 0,
+        'Object::Tiny'                => 0,
     },
 
     # Recommendations
@@ -53,10 +67,9 @@ my $builder = Module::Build->new(
         no_index => {
             directory => [ '.author', '.t', 'examples', ],
         },
-        keywords  => [qw()],
+        keywords  => [qw(cascm harvest cli hv)],
         resources => {
-            bugtracker =>
-              'http://rt.cpan.org/Public/Dist/Display.html?Name=CASCM-CLI',
+            bugtracker => 'https://github.com/mithun/perl-cascm-cli/issues',
             repository => 'git://github.com/mithun/perl-cascm-cli.git',
             homepage   => 'https://github.com/mithun/perl-cascm-cli',
         },
