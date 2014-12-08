@@ -10,6 +10,7 @@ use warnings FATAL => 'all';
 use Carp qw(croak carp);
 
 use File::Spec;
+use Config::Tiny;
 use File::HomeDir;
 use CASCM::Wrapper;
 use Log::Any::Adapter;
@@ -18,9 +19,8 @@ use Getopt::Mini ( later => 1 );
 use Log::Any::Adapter::Callback;
 use Getopt::Long qw(GetOptionsFromArray);
 use Object::Tiny qw(cascm exitval context);
-use Config::Tiny;
 
-use Data::Printer;
+# use Data::Printer;
 
 #######################
 # VERSION
@@ -76,7 +76,6 @@ sub run {
         }
         delete $sub_options{''};
     } ## end if ( exists $sub_options...)
-    p @sub_args;
 
     # Make lowercase
     $subcmd = '' if not defined $subcmd;
@@ -115,9 +114,7 @@ sub run {
     }
 
     # Run subcommand
-    # $self->cascm()->$subcmd( {%sub_options}, @sub_args );
-    my $dry_run = $self->cascm()->$subcmd( {%sub_options}, @sub_args );
-    p $dry_run;
+    $self->cascm()->$subcmd( {%sub_options}, @sub_args );
     $self->{exitval} = $self->cascm()->exitval();
 
   return 1;
@@ -291,7 +288,6 @@ sub _init_cascm {
     my $cascm = CASCM::Wrapper->new(
         {
             parse_logs => 1,
-            dry_run    => 1,
         }
     );
     $cascm->set_context( $self->context() );
