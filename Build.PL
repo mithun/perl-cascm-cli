@@ -45,7 +45,7 @@ my $builder = Module::Build->new(
         'perl' => '5.008001',
 
         # Dependencies
-        'CASCM::Wrapper'              => '0.16',
+        'CASCM::Wrapper'              => '1.0.1',
         'Config::Tiny'                => 0,
         'File::HomeDir'               => 0,
         'File::Spec'                  => 0,
