@@ -24,14 +24,18 @@ my $builder = Module::Build->new(
     # dist_abstract => '',
 
     # Directives
-    auto_configure_requires => 1,
-    create_packlist         => 1,
-    create_license          => 1,
-    create_makefile_pl      => 'traditional',
-    recursive_test_files    => 1,
-    add_to_cleanup          => ['CASCM-CLI-*'],
+    create_packlist      => 1,
+    create_license       => 1,
+    create_makefile_pl   => 'traditional',
+    recursive_test_files => 1,
+    add_to_cleanup       => ['CASCM-CLI-*'],
 
     # Prereqs
+    configure_requires => {
+
+        # Version that ships with perl-5.10.1
+        'Module::Build' => '0.340201',
+    },
     build_requires => {
         'Test::More' => 0,
         'Test::Deep' => 0,
