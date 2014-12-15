@@ -23,7 +23,7 @@ use Object::Tiny qw(cascm exitval context);
 #######################
 # VERSION
 #######################
-our $VERSION = '0.1.0';
+our $VERSION = '0.1.1';
 
 #######################
 # RUNNER

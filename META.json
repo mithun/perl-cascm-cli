@@ -37,7 +37,7 @@
       },
       "configure" : {
          "requires" : {
-            "Module::Build" : "0.42"
+            "Module::Build" : "0.340201"
          }
       },
       "runtime" : {
@@ -59,7 +59,7 @@
    "provides" : {
       "CASCM::CLI" : {
          "file" : "lib/CASCM/CLI.pm",
-         "version" : "v0.1.0"
+         "version" : "v0.1.1"
       }
    },
    "release_status" : "stable",
@@ -75,5 +75,5 @@
          "url" : "git://github.com/mithun/perl-cascm-cli.git"
       }
    },
-   "version" : "v0.1.0"
+   "version" : "v0.1.1"
 }

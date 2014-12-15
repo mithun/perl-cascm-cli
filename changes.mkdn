@@ -4,6 +4,10 @@ author:
 title: 'Version History for CASCM-CLI'
 ...
 
-# 0.01
+# 0.1.1
+
+-   Fix `configure_requires` in `Build.PL`
+
+# 0.1.0
 
 -   Initial release

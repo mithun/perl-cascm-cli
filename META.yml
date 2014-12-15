@@ -8,7 +8,7 @@ build_requires:
   Test::Pod: '1.00'
   version: '0'
 configure_requires:
-  Module::Build: '0.42'
+  Module::Build: '0.340201'
 dynamic_config: 1
 generated_by: 'Module::Build version 0.421, CPAN::Meta::Converter version 2.143240'
 keywords:
@@ -29,7 +29,7 @@ no_index:
 provides:
   CASCM::CLI:
     file: lib/CASCM/CLI.pm
-    version: v0.1.0
+    version: v0.1.1
 requires:
   CASCM::Wrapper: '1.000001'
   Config::Tiny: '0'
@@ -47,4 +47,4 @@ resources:
   homepage: https://github.com/mithun/perl-cascm-cli
   license: http://dev.perl.org/licenses/
   repository: git://github.com/mithun/perl-cascm-cli.git
-version: v0.1.0
+version: v0.1.1
