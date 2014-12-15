@@ -1,32 +1,38 @@
-% Installing CASCM-CLI
-% Mithun Ayachit
+---
+author:
+- Mithun Ayachit
+title: 'Installing CASCM-CLI'
+...
 
 # Distribution page
 
-The latest and all previous releases for CASCM-CLI can be downloaded from https://metacpan.org/release/CASCM-CLI
+The latest and all previous releases for CASCM-CLI can be downloaded
+from https://metacpan.org/release/CASCM-CLI
 
 # Install using `cpanm`
 
 CASCM-CLI can be installed with `cpanm` using the following command
 
-	cpanm .
+    cpanm .
 
 # Install using `Module::Build`
 
-CASCM-CLI can be installed with `Module::Build` using the following commands
+CASCM-CLI can be installed with `Module::Build` using the following
+commands
 
-	perl ./Build.PL
-	./Build
-	./Build test
-	./Build install
+    perl ./Build.PL
+    ./Build
+    ./Build test
+    ./Build install
 
 # Install using `ExtUtils::MakeMaker`
 
-CASCM-CLI can be installed with `ExtUtils::MakeMaker` using the following commands
+CASCM-CLI can be installed with `ExtUtils::MakeMaker` using the
+following commands
 
-	perl ./Makefile.PL
-	make
-	make test
-	make install
+    perl ./Makefile.PL
+    make
+    make test
+    make install
 
-------------------------------
+------------------------------------------------------------------------

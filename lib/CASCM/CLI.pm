@@ -313,11 +313,15 @@ C<hv> provides a unified, context aware CLI for CA Harvest SCM.
 
 =head1 CONTEXT
 
-C<hv> looks for, collects, merges and passes on context and options to underlying Harvest commands. This allows context to be configured in various locations.
+C<hv> looks for, collects, merges and passes on context and options to
+underlying Harvest commands. This allows context to be configured in
+various locations.
 
-Context files are C<.ini> files. Please see the documentation in L<CASCM::Wrapper> for the format and examples of context files.
+Context files are C<.ini> files. Please see the documentation in
+L<CASCM::Wrapper> for the format and examples of context files.
 
-The following precedence is used when merging context from various sources.
+The following precedence is used when merging context from various
+sources.
 
 =over
 
@@ -325,29 +329,36 @@ The following precedence is used when merging context from various sources.
 
     hv hci -st Developement
 
-Harvest CLI options can be provided directly on the command line, just like you would when running harvest commands directly
+Harvest CLI options can be provided directly on the command line, just
+like you would when running harvest commands directly
 
 =item Project-specific Context
 
-The project context is a context file C<.hvcontext> in the current directory
+The project context is a context file C<.hvcontext> in the current
+directory
 
 =item User-specific Context
 
-The user's context file defaults to C<.hvcontext> in the user's home directory. This can also be specified using the C<HVCONTEXT> environment variable.
+The user's context file defaults to C<.hvcontext> in the user's home
+directory. This can also be specified using the C<HVCONTEXT>
+environment variable.
 
 =item System-wide Context
 
-The system wide context file defaults to C<$CA_SCM_HOME/hvcontext> or C<$HARVEST_HOME/hvcontext>
+The system wide context file defaults to C<$CA_SCM_HOME/hvcontext> or
+C<$HARVEST_HOME/hvcontext>
 
 =back
 
 =head1 LOGGING
 
-Unlike harvest commands, C<hv> will, by default, log to STDOUT(or STDERR). Harvest specific log files are not created.
+Unlike harvest commands, C<hv> will, by default, log to STDOUT(or
+STDERR). Harvest specific log files are not created.
 
 =head1 SUBCOMMANDS
 
-Almost all harvest commands are supported as subcommands. Please see L<CASCM::Wrapper> for a full list of supported commands.
+Almost all harvest commands are supported as subcommands. Please see
+L<CASCM::Wrapper> for a full list of supported commands.
 
 =head1 BUGS AND LIMITATIONS
 

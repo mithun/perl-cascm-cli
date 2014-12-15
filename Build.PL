@@ -30,7 +30,6 @@ my $builder = Module::Build->new(
     create_makefile_pl      => 'traditional',
     recursive_test_files    => 1,
     add_to_cleanup          => ['CASCM-CLI-*'],
-    sign                    => 1,
 
     # Prereqs
     build_requires => {

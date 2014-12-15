@@ -1,6 +1,9 @@
-% Version History for CASCM-CLI
-% Mithun Ayachit
+---
+author:
+- Mithun Ayachit
+title: 'Version History for CASCM-CLI'
+...
 
 # 0.01
 
-- Initial release
+-   Initial release
